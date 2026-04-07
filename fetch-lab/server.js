@@ -37,14 +37,13 @@ app.get('/api/greet/:name', (req, res) => {
 });
 
 app.get("/api/math", (req, res) => {
-  console.log("sdfsdfsdfsd")
-  let a = req.query.a;
-  let b = req.query.b;
+  let a = Number(req.query.a);
+  let b = Number(req.query.b);
   let operation = req.query.operation;
   let result = 0;
 
-  if (operation == null) {
-    res.status(400).json({ error: 'Invalid or missing operation. Use: add, subtract, multiply, divide' });
+  if (!operation) {
+    return res.status(400).json({ error: 'Invalid or missing operation. Use: add, subtract, multiply, divide' });
   }
 
   switch (operation) {
